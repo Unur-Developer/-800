@@ -5,15 +5,7 @@
 <script>try{document.documentElement.dataset.theme=localStorage.getItem("ns800.theme.v2")||"light"}catch(e){document.documentElement.dataset.theme="light"}</script>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#f4f7fc">
-<meta name="description" content="NIIGEM 800 — Нийгмийн ухааны ЭЕШ-д бэлтгэх сургалтын веб апп.">
-<meta name="application-name" content="NIIGEM 800">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="default">
-<meta name="apple-mobile-web-app-title" content="NIIGEM 800">
-<link rel="manifest" href="./manifest.json">
-<link rel="icon" type="image/png" sizes="192x192" href="./assets/icon-192.png">
-<link rel="apple-touch-icon" href="./assets/apple-touch-icon.png">
-<title>NIIGEM 800 · Нийгэм судлал</title>
+<title>Нийгэм судлал · ЭЕШ 800</title>
 <style>
 /* ===== TOKENS ===== */
 :root,:root[data-theme=light]{--bg:#f4f7fc;--card:#fff;--ink:#0f1c36;--mut:#5b6a86;--line:#e2e8f3;--acc:#1f5fd1;--accbg:#e9f0fd;--onacc:#fff;--ok:#0b7f58;--okbg:#e3f6ee;--bad:#c62f3b;--badbg:#fdeaec;--warn:#a15c07;--gold:#8f5a00;--goldbg:#fff6e0;--goldln:#f0d9a0;--inner:#fff;--sh:0 1px 2px rgba(15,28,54,.05);--tc:#f4f7fc;color-scheme:light}
@@ -298,14 +290,15 @@ nav button.on svg{stroke-width:2.3}
 .ds-k b{display:block;font-size:20px}.ds-k span{font-size:12px;color:var(--mut)}
 .ds-n{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:10px 0;border-top:1px solid var(--line)}
 .ds-n:first-child{border-top:0}.ds-n .btn{width:auto;margin:0;padding:8px 14px;flex:none}
-
-/* ===== NIIGEM 800 PWA BRAND ===== */
-.brand-title{display:flex;align-items:center;gap:10px;min-width:0}.brand-title img{width:48px;height:48px;object-fit:contain;border-radius:12px;background:#f4f7fc;flex:none}.brand-title h1{font-size:21px;margin:0}.brand-title .sub{font-size:12px}
-#pwa-install{position:fixed;right:14px;bottom:calc(var(--navh) + env(safe-area-inset-bottom) + 12px);z-index:30;border:0;border-radius:999px;padding:11px 16px;background:var(--acc);color:var(--onacc);font:600 14px var(--font);box-shadow:0 4px 18px #0002}
-#pwa-install[hidden]{display:none}
-@media(min-width:760px){.brand-title h1{font-size:24px}}
-
 </style>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" type="image/png" sizes="48x48" href="icons/favicon-48.png">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="NIIGEM 800">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="description" content="Нийгмийн ухааны сүлжээ веб апп — ЭЕШ 800">
 </head>
 <body>
 <main id="app"></main>
@@ -2268,7 +2261,7 @@ function home(){
     const note=x.k==='p2'&&R.ex.p2none?' · оролдоогүй, 0 гэж тооцсон':x.k==='speed'&&R.ex.avg?` · дундаж ${R.ex.avg}с`:'';
     return `<div class="comp"><span>${RLBL[x.k]} <span class="sub">${x.w}%${note}</span></span><b>${p===null?'–':p+'%'}</b>${p===null?'<span class="sub" style="grid-column:1/-1">өгөгдөл цөөн · тооцоонд ороогүй</span>':bar(p,p<50)}</div>`}).join('');
   const C=2*Math.PI*36,gradeCard=g=>{const l=chList(g),tp=l.reduce((n,c)=>n+c.b.topics.length,0);return itm('',`${g}-р анги`,`${l.length} бүлэг · ${tp} сэдэв`,`chG=${g};chS='';go('chap')`,g)};
-  return `<header class="page-h hm-hd"><div class="brand-title"><img src="./assets/icon-192.png" alt="NIIGEM 800" width="48" height="48"><div><h1>NIIGEM 800</h1><p class="sub">Нийгмийн ухаан · ЭЕШ 800</p></div></div>${hmDate()}</header>
+  return `<header class="page-h hm-hd"><div><h1>ЭЕШ 800</h1><p class="sub">Нийгэм судлал</p></div>${hmDate()}</header>
   ${hmCountdown()}${homeRings()}${hmPredict()}${todayCard}
   <div class="grid2" style="margin:12px 0"><button class="btn" onclick="tqSel.g=0;go('test')">Тест өгөх</button><button class="btn alt" onclick="go('soril')">Сорил</button></div>
   <details class="fold"><summary>Бэлтгэл, хичээл, дэлгэрэнгүй</summary><div class="fb">
@@ -3634,30 +3627,8 @@ init();
 
 })();
 </script>
-
 <script>
-/* NIIGEM 800 PWA: HTTPS/GitHub Pages дээр service worker бүртгэнэ. */
-(()=>{
-  if ('serviceWorker' in navigator && (location.protocol === 'https:' || location.hostname === 'localhost')) {
-    window.addEventListener('load', () => {
-      navigator.serviceWorker.register('./sw.js').catch(err => console.warn('PWA бүртгэл амжилтгүй:', err));
-    });
-  }
-  let installEvent = null;
-  const installBtn = document.createElement('button');
-  installBtn.id = 'pwa-install'; installBtn.type = 'button'; installBtn.textContent = 'Апп суулгах'; installBtn.hidden = true;
-  document.body.appendChild(installBtn);
-  window.addEventListener('beforeinstallprompt', event => {
-    event.preventDefault(); installEvent = event; installBtn.hidden = false;
-  });
-  installBtn.addEventListener('click', async () => {
-    if (!installEvent) return;
-    installEvent.prompt();
-    try { await installEvent.userChoice; } catch (_) {}
-    installEvent = null; installBtn.hidden = true;
-  });
-  window.addEventListener('appinstalled', () => { installBtn.hidden = true; installEvent = null; });
-})();
+if('serviceWorker' in navigator&&location.protocol!=='file:'){addEventListener('load',function(){navigator.serviceWorker.register('sw.js').catch(function(){})})}
 </script>
 </body>
 </html>
