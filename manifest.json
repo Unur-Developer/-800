@@ -1,0 +1,17 @@
+{
+  "id": "./",
+  "name": "NIIGEM 800 — Нийгмийн ухаан",
+  "short_name": "NIIGEM 800",
+  "description": "Нийгмийн ухааны ЭЕШ-д бэлтгэх сургалтын веб апп.",
+  "lang": "mn",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#f4f7fc",
+  "theme_color": "#f4f7fc",
+  "icons": [
+    { "src": "./assets/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable" },
+    { "src": "./assets/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ]
+}
